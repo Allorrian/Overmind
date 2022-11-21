@@ -42,7 +42,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "editable": true,
       "error": false,
       "format": "percent",
@@ -99,14 +99,14 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "asPercent(movingAverage(screeps.$User.cpu.getUsed, 5), #B)",
-          "targetFull": "asPercent(movingAverage(screeps.$User.cpu.getUsed, 5), screeps.$User.cpu.limit)"
+          "target": "asPercent(movingAverage(stats.Allorrian.shard0.cpu.getUsed, 5), #B)",
+          "targetFull": "asPercent(movingAverage(stats.Allorrian.shard0.cpu.getUsed, 5), stats.Allorrian.shard0.cpu.limit)"
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "screeps.$User.cpu.limit"
+          "target": "stats.Allorrian.shard0.cpu.limit"
         }
       ],
       "thresholds": "80,90",
@@ -127,7 +127,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "editable": true,
       "error": false,
       "fill": 0,
@@ -197,38 +197,38 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(screeps.$User.cpu.getUsed, 'CPU')"
+          "target": "alias(stats.Allorrian.shard0.cpu.getUsed, 'CPU')"
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(screeps.$User.cpu.bucket, 'Bucket')"
+          "target": "alias(stats.Allorrian.shard0.cpu.bucket, 'Bucket')"
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "alias(movingAverage(screeps.$User.cpu.getUsed, '5min'), 'Average CPU')"
+          "target": "alias(movingAverage(stats.Allorrian.shard0.cpu.getUsed, '5min'), 'Average CPU')"
         },
         {
           "refCount": 0,
           "refId": "D",
-          "target": "alias(screeps.$User.cpu.limit, 'Limit')",
+          "target": "alias(stats.Allorrian.shard0.cpu.limit, 'Limit')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(scale(derivative(screeps.$User.persistent.lastGlobalReset), 10000), 'Global Reset')",
+          "target": "alias(scale(derivative(stats.Allorrian.shard0.persistent.lastGlobalReset), 10000), 'Global Reset')",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "alias(scale(derivative(screeps.$User.persistent.lastMemoryReset), 10000), 'Memory Reset')",
+          "target": "alias(scale(derivative(stats.Allorrian.shard0.persistent.lastMemoryReset), 10000), 'Memory Reset')",
           "textEditor": false
         }
       ],
@@ -283,7 +283,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "editable": true,
       "error": false,
       "format": "none",
@@ -338,7 +338,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "screeps.$User.cpu.bucket"
+          "target": "stats.Allorrian.shard0.cpu.bucket"
         }
       ],
       "thresholds": "1500,3000",
@@ -363,7 +363,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -421,7 +421,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "screeps.$User.memory.used"
+          "target": "stats.Allorrian.shard0.memory.used"
         }
       ],
       "thresholds": "1433600,1740800",
@@ -478,19 +478,19 @@
           "hide": true,
           "refCount": 0,
           "refId": "A",
-          "target": "keepLastValue(screeps.$User.cpu.heapStatistics.total_heap_size, 500)",
+          "target": "keepLastValue(stats.Allorrian.shard0.cpu.heapStatistics.total_heap_size, 500)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "B",
-          "target": "keepLastValue(screeps.$User.cpu.heapStatistics.heap_size_limit, 500)"
+          "target": "keepLastValue(stats.Allorrian.shard0.cpu.heapStatistics.heap_size_limit, 500)"
         },
         {
           "refCount": 0,
           "refId": "C",
-          "target": "aliasByNode(exclude(keepLastValue(screeps.$User.cpu.heapStatistics.*, 500), 'does_zap_garbage'), 4)"
+          "target": "aliasByNode(exclude(keepLastValue(stats.Allorrian.shard0.cpu.heapStatistics.*, 500), 'does_zap_garbage'), 4)"
         }
       ],
       "thresholds": [],
@@ -558,7 +558,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -617,15 +617,15 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "asPercent(screeps.$User.gcl.progress, #B)",
-          "targetFull": "asPercent(screeps.$User.gcl.progress, screeps.$User.gcl.progressTotal)",
+          "target": "asPercent(stats.Allorrian.shard0.gcl.progress, #B)",
+          "targetFull": "asPercent(stats.Allorrian.shard0.gcl.progress, stats.Allorrian.shard0.gcl.progressTotal)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "screeps.$User.gcl.progressTotal",
+          "target": "stats.Allorrian.shard0.gcl.progressTotal",
           "textEditor": false
         }
       ],
@@ -653,7 +653,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -706,7 +706,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "screeps.$User.leaderboard.rank"
+          "target": "stats.Allorrian.shard0.leaderboard.rank"
         }
       ],
       "thresholds": "",
@@ -727,7 +727,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -780,20 +780,20 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(scale(movingAverage(perSecond(keepLastValue(screeps.$User.gcl.progress, 100)), 10), 86400), 'GCL / 24hr')",
+          "target": "alias(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.gcl.progress, 100)), 10), 86400), 'GCL / 24hr')",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "B",
-          "target": "alias(diffSeries(screeps.$User.gcl.progressTotal, screeps.$User.gcl.progress), 'Remaining until next level')",
+          "target": "alias(diffSeries(stats.Allorrian.shard0.gcl.progressTotal, stats.Allorrian.shard0.gcl.progress), 'Remaining until next level')",
           "textEditor": false
         },
         {
           "refCount": 0,
           "refId": "C",
-          "target": "alias(scale(movingAverage(perSecond(keepLastValue(screeps.$User.gcl.progress, 100)), 500), 86400), 'GCL / 24hr (avg)')",
+          "target": "alias(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.gcl.progress, 100)), 500), 86400), 'GCL / 24hr (avg)')",
           "textEditor": false
         }
       ],
@@ -847,7 +847,7 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "decimals": null,
       "fontSize": "70%",
       "format": "short",
@@ -874,7 +874,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortByTotal(scale(movingAverage(perSecond(keepLastValue(screeps.$User.colonies.$colonies.rcl.progress, 100)), 3600), 86400)), 3)",
+          "target": "aliasByNode(sortByTotal(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.rcl.progress, 100)), 3600), 86400)), 3)",
           "textEditor": false
         }
       ],
@@ -892,7 +892,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -950,14 +950,14 @@
           "hide": true,
           "refCount": 1,
           "refId": "A",
-          "target": "alias(scale(movingAverage(perSecond(keepLastValue(screeps.$User.gcl.progress)), 500), 86400), 'GCL / 24hr (avg)')",
+          "target": "alias(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.gcl.progress)), 500), 86400), 'GCL / 24hr (avg)')",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 1,
           "refId": "B",
-          "target": "alias(keepLastValue(diffSeries(screeps.$User.gcl.progressTotal, screeps.$User.gcl.progress)), 'Progress to go')",
+          "target": "alias(keepLastValue(diffSeries(stats.Allorrian.shard0.gcl.progressTotal, stats.Allorrian.shard0.gcl.progress)), 'Progress to go')",
           "textEditor": false
         },
         {
@@ -965,14 +965,14 @@
           "refCount": 0,
           "refId": "C",
           "target": "alias(divideSeries(#B, #A), 'Rem')",
-          "targetFull": "alias(divideSeries(alias(keepLastValue(diffSeries(screeps.$User.gcl.progressTotal, screeps.$User.gcl.progress)), 'Progress to go'), alias(scale(movingAverage(perSecond(keepLastValue(screeps.$User.gcl.progress)), 500), 86400), 'GCL / 24hr (avg)')), 'Rem')",
+          "targetFull": "alias(divideSeries(alias(keepLastValue(diffSeries(stats.Allorrian.shard0.gcl.progressTotal, stats.Allorrian.shard0.gcl.progress)), 'Progress to go'), alias(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.gcl.progress)), 500), 86400), 'GCL / 24hr (avg)')), 'Rem')",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "D",
-          "target": "alias(screeps.$User.gcl.progress, 'Progress')",
+          "target": "alias(stats.Allorrian.shard0.gcl.progress, 'Progress')",
           "textEditor": false
         }
       ],
@@ -1076,7 +1076,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(removeEmptySeries(screeps.$User.colonies.*.defcon), 3)"
+          "target": "aliasByNode(removeEmptySeries(stats.Allorrian.shard0.colonies.*.defcon), 3)"
         }
       ],
       "title": "DEFCON Levels",
@@ -1089,7 +1089,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1126,7 +1126,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(keepLastValue(screeps.$User.colonies.$colonies.hatchery.uptime), 3)",
+          "target": "aliasByNode(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.hatchery.uptime), 3)",
           "textEditor": false
         }
       ],
@@ -1177,7 +1177,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -1215,14 +1215,14 @@
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(scale(movingAverage(perSecond(keepLastValue(screeps.$User.colonies.$colonies.rcl.progress)), 200), 86400), 3)",
+          "target": "aliasByNode(scale(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.rcl.progress)), 200), 86400), 3)",
           "textEditor": false
         },
         {
           "hide": true,
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByNode(screeps.$User.colonies.$colonies.rcl.level, 3)"
+          "target": "aliasByNode(stats.Allorrian.shard0.colonies.$colonies.rcl.level, 3)"
         }
       ],
       "thresholds": [],
@@ -1271,7 +1271,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1309,7 +1309,7 @@
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(movingAverage(keepLastValue(screeps.$User.colonies.$colonies.evolutionChamber.avgUsage, 500), '1hour'), 3)",
+          "target": "aliasByNode(movingAverage(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.evolutionChamber.avgUsage, 500), '1hour'), 3)",
           "textEditor": false
         }
       ],
@@ -1395,13 +1395,13 @@
           "hide": true,
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(movingAverage(perSecond(keepLastValue(screeps.$User.colonies.*.avgBarrierHits, 100)), '30min'), 3)",
+          "target": "aliasByNode(movingAverage(perSecond(keepLastValue(stats.Allorrian.shard0.colonies.*.avgBarrierHits, 100)), '30min'), 3)",
           "textEditor": true
         },
         {
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByNode(keepLastValue(screeps.$User.colonies.*.avgBarrierHits, 100), 3)",
+          "target": "aliasByNode(keepLastValue(stats.Allorrian.shard0.colonies.*.avgBarrierHits, 100), 3)",
           "textEditor": true
         }
       ],
@@ -1451,7 +1451,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1488,7 +1488,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(keepLastValue(screeps.$User.colonies.$colonies.assets.energy, 100), 3)",
+          "target": "aliasByNode(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.assets.energy, 100), 3)",
           "textEditor": false
         }
       ],
@@ -1539,7 +1539,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1577,13 +1577,13 @@
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasSub(aliasByNode(movingAverage(keepLastValue(screeps.$User.colonies.$colonies.miningSites.avgUsage, 100), '30min'), 3), \"(.*)\", \"Usage - \\1\")",
+          "target": "aliasSub(aliasByNode(movingAverage(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.miningSites.avgUsage, 100), '30min'), 3), \"(.*)\", \"Usage - \\1\")",
           "textEditor": true
         },
         {
           "refCount": 0,
           "refId": "B",
-          "target": "aliasSub(aliasByNode(keepLastValue(screeps.$User.colonies.$colonies.miningSites.avgDowntime, 100), 3), \"(.*)\", \"Downtime - \\1\")",
+          "target": "aliasSub(aliasByNode(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.miningSites.avgDowntime, 100), 3), \"(.*)\", \"Downtime - \\1\")",
           "textEditor": true
         }
       ],
@@ -1634,7 +1634,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 7,
@@ -1672,7 +1672,7 @@
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(movingAverage(keepLastValue(screeps.$User.colonies.$colonies.miningSites.energyInPerTick, 500), '30min'), 3)",
+          "target": "aliasByNode(movingAverage(keepLastValue(stats.Allorrian.shard0.colonies.$colonies.miningSites.energyInPerTick, 500), '30min'), 3)",
           "textEditor": false
         }
       ],
@@ -1736,7 +1736,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -1775,7 +1775,7 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.*, 500), \"sum\", 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.*, 500), \"sum\", 5)",
           "textEditor": true
         },
         {
@@ -1783,7 +1783,7 @@
           "refCount": 0,
           "refId": "B",
           "target": "exclude(aliasByNode(#A, 0), \"energy\")",
-          "targetFull": "exclude(aliasByNode(groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.*, 500), \"sum\", 5), 0), \"energy\")",
+          "targetFull": "exclude(aliasByNode(groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.*, 500), \"sum\", 5), 0), \"energy\")",
           "textEditor": true
         }
       ],
@@ -1833,7 +1833,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 0,
       "gridPos": {
         "h": 8,
@@ -1872,70 +1872,70 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XGH2O, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XGH2O, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XGHO2, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XGHO2, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XKH2O, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XKH2O, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "D",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XKHO2, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XKHO2, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XLH2O, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XLH2O, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "F",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XLHO2, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XLHO2, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "G",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XUH2O, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XUH2O, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "H",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XUHO2, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XUHO2, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "I",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XZH2O, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XZH2O, 500), 'sum', 5)",
           "textEditor": false
         },
         {
           "hide": false,
           "refCount": 0,
           "refId": "J",
-          "target": "groupByNodes(keepLastValue(screeps.$User.colonies.*.assets.XZHO2, 500), 'sum', 5)",
+          "target": "groupByNodes(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.XZHO2, 500), 'sum', 5)",
           "textEditor": false
         }
       ],
@@ -1985,7 +1985,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -2024,7 +2024,7 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "groupByNodes(removeBelowValue(keepLastValue(screeps.$User.colonies.*.assets.*, 500), 0), \"sum\", 5)",
+          "target": "groupByNodes(removeBelowValue(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.*, 500), 0), \"sum\", 5)",
           "textEditor": false
         },
         {
@@ -2032,7 +2032,7 @@
           "refCount": 0,
           "refId": "B",
           "target": "aliasByNode(movingAverage(derivative(exclude(#A, '^(energy|H|O|U|K|L|Z|X)$')), '2hour'), 0)",
-          "targetFull": "aliasByNode(movingAverage(derivative(exclude(groupByNodes(removeBelowValue(keepLastValue(screeps.$User.colonies.*.assets.*, 500), 0), \"sum\", 5), '^(energy|H|O|U|K|L|Z|X)$')), '2hour'), 0)",
+          "targetFull": "aliasByNode(movingAverage(derivative(exclude(groupByNodes(removeBelowValue(keepLastValue(stats.Allorrian.shard0.colonies.*.assets.*, 500), 0), \"sum\", 5), '^(energy|H|O|U|K|L|Z|X)$')), '2hour'), 0)",
           "textEditor": true
         }
       ],
@@ -2086,7 +2086,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "format": "short",
       "gauge": {
         "maxValue": 100,
@@ -2139,7 +2139,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 500)",
+          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 500)",
           "textEditor": true
         }
       ],
@@ -2164,7 +2164,7 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fontSize": "80%",
       "format": "short",
       "gridPos": {
@@ -2189,7 +2189,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortByTotal(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*, 7, 'sumSeries'))), '24hour'), 86000)), 0)",
+          "target": "aliasByNode(sortByTotal(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*, 7, 'sumSeries'))), '24hour'), 86000)), 0)",
           "textEditor": false
         }
       ],
@@ -2202,7 +2202,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -2235,7 +2235,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*, 7, 'sumSeries'))), 500), 86000), 0)",
+          "target": "aliasByNode(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*, 7, 'sumSeries'))), 500), 86000), 0)",
           "textEditor": true
         }
       ],
@@ -2290,7 +2290,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "format": "percentunit",
       "gauge": {
         "maxValue": 1,
@@ -2345,21 +2345,21 @@
           "hide": true,
           "refCount": -1,
           "refId": "A",
-          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(screeps.$User.persistent.terminalNetwork.transfers.costs.*.*))), 86400), 200)",
+          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.costs.*.*))), 86400), 200)",
           "textEditor": true
         },
         {
           "hide": true,
           "refCount": -1,
           "refId": "B",
-          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 200)",
+          "target": "movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 200)",
           "textEditor": true
         },
         {
           "refCount": 0,
           "refId": "C",
           "target": "divideSeries(#A, #B)",
-          "targetFull": "divideSeries(movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(screeps.$User.persistent.terminalNetwork.transfers.costs.*.*))), 86400), 200), movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 200))",
+          "targetFull": "divideSeries(movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.costs.*.*))), 86400), 200), movingAverage(scaleToSeconds(perSecond(keepLastValue(sumSeries(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*))), 86400), 200))",
           "textEditor": true
         }
       ],
@@ -2384,7 +2384,7 @@
         "label": "Others",
         "threshold": 0
       },
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fontSize": "80%",
       "format": "short",
       "gridPos": {
@@ -2410,7 +2410,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(sortByTotal(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*, 6, 'sumSeries'))), '24hour'), 86000)), 0)",
+          "target": "aliasByNode(sortByTotal(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*, 6, 'sumSeries'))), '24hour'), 86000)), 0)",
           "textEditor": false
         }
       ],
@@ -2423,7 +2423,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 7,
@@ -2456,7 +2456,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "aliasByNode(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(screeps.$User.persistent.terminalNetwork.transfers.energy.*.*, 6, 'sumSeries'))), 500), 86000), 0)",
+          "target": "aliasByNode(scaleToSeconds(movingAverage(perSecond(keepLastValue(groupByNode(stats.Allorrian.shard0.persistent.terminalNetwork.transfers.energy.*.*, 6, 'sumSeries'))), 500), 86000), 0)",
           "textEditor": true
         }
       ],
@@ -2575,7 +2575,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "screeps.$User.persistent.trader.credits"
+          "target": "stats.Allorrian.shard0.persistent.trader.credits"
         }
       ],
       "thresholds": "",
@@ -2596,7 +2596,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -2630,13 +2630,13 @@
         {
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(screeps.$User.persistent.trader.bought.*.amount), 100)), 86000),5)",
+          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(stats.Allorrian.shard0.persistent.trader.bought.*.amount), 100)), 86000),5)",
           "textEditor": true
         },
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(screeps.$User.persistent.trader.sold.*.amount), 100)), -86000),5)",
+          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(stats.Allorrian.shard0.persistent.trader.sold.*.amount), 100)), -86000),5)",
           "textEditor": true
         }
       ],
@@ -2686,7 +2686,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "ScreepsPlus-Graphite",
+      "datasource": "carbonapi",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -2720,13 +2720,13 @@
         {
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(screeps.$User.persistent.trader.bought.*.credits), 100)), 86000),5)",
+          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(stats.Allorrian.shard0.persistent.trader.bought.*.credits), 100)), 86000),5)",
           "textEditor": true
         },
         {
           "refCount": 0,
           "refId": "A",
-          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(screeps.$User.persistent.trader.sold.*.credits), 100)), -86000),5)",
+          "target": "aliasByNode(scaleToSeconds(perSecond(movingAverage(keepLastValue(stats.Allorrian.shard0.persistent.trader.sold.*.credits), 100)), -86000),5)",
           "textEditor": true
         }
       ],
@@ -2832,7 +2832,7 @@
       "targets": [
         {
           "refId": "A",
-          "target": "scaleToSeconds(perSecond(keepLastValue(screeps.$User.persistent.trader.credits, 500)), 86400)"
+          "target": "scaleToSeconds(perSecond(keepLastValue(stats.Allorrian.shard0.persistent.trader.credits, 500)), 86400)"
         }
       ],
       "thresholds": "",
@@ -2860,18 +2860,18 @@
       {
         "allValue": null,
         "current": {
-          "text": "muon",
-          "value": "muon"
+          "text": "Allorrian",
+          "value": "Allorrian"
         },
-        "datasource": "ScreepsPlus-Graphite",
+        "datasource": "carbonapi",
         "definition": "",
         "hide": 0,
         "includeAll": false,
         "label": "",
         "multi": false,
-        "name": "User",
+        "name": "Allorrian",
         "options": [],
-        "query": "screeps.*",
+        "query": "stats.Allorrian.shard0",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2888,7 +2888,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "ScreepsPlus-Graphite",
+        "datasource": "carbonapi",
         "definition": "",
         "hide": 0,
         "includeAll": true,
@@ -2896,7 +2896,7 @@
         "multi": true,
         "name": "colonies",
         "options": [],
-        "query": "screeps.$User.colonies.*",
+        "query": "stats.Allorrian.shard0.colonies.*",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
